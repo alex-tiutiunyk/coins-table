@@ -554,6 +554,10 @@ video {
   display: none;
 }
 
+.table {
+  display: table;
+}
+
 body {
   margin: 0;
 }
