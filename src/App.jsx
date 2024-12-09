@@ -54,7 +54,7 @@ const App = () => {
     <>
       <div className="px-[20px]">
         <div className="mt-[40px] max-w-[600px] mx-auto bg-gray-100 pt-[15px] px-[20px] pb-[20px] rounded-lg flex flex-col gap-y-[25px]">
-          <img src="https://crypto-fund.zojax.com/logo.png" alt="" width="150" />
+          <a href="https://crypto-fund.zojax.com"><img src="https://crypto-fund.zojax.com/logo.png" alt="" width="150" /></a>
           <div className="border rounded-lg border-gray-400">
             <table className="w-full text-base">
               <tr>
