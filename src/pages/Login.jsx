@@ -5,7 +5,6 @@ const Login = () => {
     <>
       {/* component */}
       <div className="flex justify-center items-center h-screen max-w-md mx-auto p-6">
-          {/* Left: Image */}
         {/* Right: Login Form */}
         <div className= "bg-gray-100 rounded-lg w-full p-6">
           <a href="https://crypto-fund.zojax.com"><img src="https://crypto-fund.zojax.com/logo.png" alt="" width="150" className="mb-4 block mx-auto"/></a>
