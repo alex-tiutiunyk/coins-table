@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { auth } from "../firebase";
 import { setUser } from "../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const userEmail = useSelector(state => state.user.email)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,7 +43,6 @@ const Login = () => {
       <div className="flex justify-center items-center min-h-screen max-w-md mx-auto p-6">
         {/* Right: Login Form */}
         <div className= "bg-gray-100 rounded-lg w-full p-6">
-          {userEmail}
           <a href="https://crypto-fund.zojax.com"><img src="https://crypto-fund.zojax.com/logo.png" alt="" width="150" className="mb-4 block mx-auto"/></a>
           <h1 className="text-2xl font-semibold mb-4">Login</h1>
           {/* Username Input */}

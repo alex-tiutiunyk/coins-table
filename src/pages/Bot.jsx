@@ -1,7 +1,8 @@
+import { useState } from "react";
 import TopBar from "../components/TopBar"
 
 const Bot = () => {
-  const coins = [
+  const [coins, setCoins] = useState([
     {
       id: 1,
       name: "ETH",
@@ -50,7 +51,20 @@ const Bot = () => {
       checked: false,
       allocation: ''
     },
-  ]
+  ])
+
+  const allocation = [5, 10, 15, 20, 25, 50];
+
+  const handleToggle = (id) => {
+    setCoins(
+      coins.map(item => {
+        if (item.id === id) {
+          return {...item, checked: !item.checked}
+        }
+        return item
+      })
+    )
+  }
 
   return (
     <>
@@ -71,21 +85,12 @@ const Bot = () => {
                 {coins.map((coin) => (
                   <tr key={coin.id}>
                     <td className="text-center border-t p-[3px] border-gray-400">
-                      {
-                        coin.checked
-                          ? <input type="checkbox" checked />
-                          : <input type="checkbox" />
-                      }
+                      <input type="checkbox" checked={coin.checked} onChange={() => handleToggle(coin.id)}/>
                     </td>
                     <td className="border-t py-[3px] border-gray-400">${coin.name}</td>
                     <td className="text-center border-t py-[3px] border-gray-400">
                       <select className="border rounded-lg w-[60px] px-[5px] py-[3px] text-center">
-                        <option>5</option>
-                        <option>10</option>
-                        <option>15</option>
-                        <option>20</option>
-                        <option>25</option>
-                        <option>50</option>
+                        {allocation.map((item, i) => <option key={i}>5</option>)}
                       </select>
                     </td>
                   </tr>
