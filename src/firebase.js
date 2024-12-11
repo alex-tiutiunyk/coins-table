@@ -4,7 +4,9 @@ import { getAuth } from "firebase/auth";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const firebaseConfig = {
-  apiKey: API_KEY,
+  apiKey: (function() {
+    return API_KEY.split('').reverse().join('')
+  })(),
   authDomain: "coins-table-9f3de.firebaseapp.com",
   projectId: "coins-table-9f3de",
   storageBucket: "coins-table-9f3de.firebasestorage.app",
