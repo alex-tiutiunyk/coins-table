@@ -90,7 +90,7 @@ const Bot = () => {
                     <td className="border-t py-[3px] border-gray-400">${coin.name}</td>
                     <td className="text-center border-t py-[3px] border-gray-400">
                       <select className="border rounded-lg w-[60px] px-[5px] py-[3px] text-center">
-                        {allocation.map((item, i) => <option key={i}>5</option>)}
+                        {allocation.map((item, i) => <option key={i}>{item}</option>)}
                       </select>
                     </td>
                   </tr>
