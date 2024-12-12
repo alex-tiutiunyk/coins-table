@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { removeUser } from "../store/slices/userSlice";
 
 const TopBar = () => {
-  const userEmail = useSelector(state => state.user.email)
+  const userEmail = localStorage.getItem('userEmail')
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -14,6 +14,7 @@ const TopBar = () => {
     signOut(auth)
       .then(() => {
         dispatch(removeUser());
+        localStorage.removeItem('userEmail')
         navigate('/coins-table')
       })
       .catch((error) => {

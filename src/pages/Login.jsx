@@ -1,16 +1,17 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react"
-import { useDispatch } from "react-redux";
 import { auth } from "../firebase";
-import { setUser } from "../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../store/slices/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [remember, setRemember] = useState(false)
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleForm = (e) => {
     if (e.target.name === "username") return setEmail(e.target.value);
@@ -23,11 +24,12 @@ const Login = () => {
       .then((user) => {
         dispatch(setUser({
           email: user.user.email,
-          id: user.user.uid,
-          token: user.user.accessToken
         }))
         setEmail('');
         setPassword('');
+        // if (remember) {
+        localStorage.setItem('userEmail', user.user.email);
+        // }
         navigate('/coins-table/bot');
       })
       .catch((error) => {
@@ -71,13 +73,13 @@ const Login = () => {
           </div>
           {/* Remember Me Checkbox */}
           <div className="mb-4 flex items-center">
-            <input type="checkbox" id="remember" name="remember" className="text-red-500"/>
+            <input type="checkbox" id="remember" checked={remember} onChange={() => setRemember(!remember)} name="remember" className="text-red-500"/>
             <label htmlFor="remember" className="text-green-900 ml-2">Remember Me</label>
           </div>
           {/* Forgot Password Link */}
-          <div className="mb-6 text-blue-500">
+          {/* <div className="mb-6 text-blue-500">
             <a href="#" className="hover:underline">Forgot Password?</a>
-          </div>
+          </div> */}
           {/* Login Button */}
           <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-semibold rounded-md py-2 px-4 w-full max-w-52 mx-auto block" onClick={handleLogIn}>Login</button>
           {/* Sign up  Link */}
@@ -86,7 +88,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      {/* <Link to="/coins-table/bot">Bot</Link> */}
     </>
   )
 }
