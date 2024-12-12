@@ -9,6 +9,7 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [remember, setRemember] = useState(false)
+  const [loginError, setLoginError] = useState(false)
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,11 +31,13 @@ const Login = () => {
         // if (remember) {
         localStorage.setItem('userEmail', user.user.email);
         // }
+        setLoginError(false)
         navigate('/coins-table/bot');
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setLoginError(true)
         console.log(errorCode, errorMessage)
       });
   }
@@ -71,6 +74,7 @@ const Login = () => {
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
             />
           </div>
+          {loginError && <div className="text-red-500 text-center mb-2">Error!</div>}
           {/* Remember Me Checkbox */}
           <div className="mb-4 flex items-center">
             <input type="checkbox" id="remember" checked={remember} onChange={() => setRemember(!remember)} name="remember" className="text-red-500"/>
